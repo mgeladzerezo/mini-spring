@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.minispring</groupId>
+        <artifactId>mini-spring-parent</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>mini-spring-demo</artifactId>
+    <name>mini-spring-demo</name>
+    <description>A small bank application that exercises every part of the framework.</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.minispring</groupId>
+            <artifactId>mini-spring-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.minispring</groupId>
+            <artifactId>mini-spring-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.minispring</groupId>
+            <artifactId>mini-spring-tx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.minispring</groupId>
+            <artifactId>mini-spring-web</artifactId>
+        </dependency>
+        <!-- The application's database driver; the framework modules themselves do not depend on it. -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>mini-spring-demo</finalName>
+        <plugins>
+            <!-- Runnable as "java -jar": dependencies are copied next to the jar and referenced from
+                 its manifest. No shading, so component scanning runs against ordinary jars. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>io.minispring.demo.BankApplication</mainClass>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-runtime-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <includeScope>runtime</includeScope>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
