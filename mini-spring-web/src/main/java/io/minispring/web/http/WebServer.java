@@ -65,7 +65,7 @@ public final class WebServer implements Lifecycle {
         server.setExecutor(executor);
         server.createContext("/", this::exchange);
         server.start();
-        LOG.log(System.Logger.Level.INFO, "Web server listening on {0}:{1}", host, port());
+        LOG.log(System.Logger.Level.INFO, "Web server listening on {0}:{1}", host, String.valueOf(port()));
     }
 
     @Override

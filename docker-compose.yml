@@ -1,0 +1,13 @@
+services:
+  bank:
+    build: .
+    image: mini-spring-bank
+    ports:
+      - "8202:8202"
+    healthcheck:
+      # The JRE image has no curl; a one-line Java client keeps the image small.
+      test: ["CMD", "java", "/app/Probe.java"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 5s
