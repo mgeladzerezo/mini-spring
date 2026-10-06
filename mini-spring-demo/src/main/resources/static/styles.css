@@ -1,0 +1,124 @@
+:root {
+  color-scheme: light dark;
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --text: #1b1f27;
+  --muted: #5d6675;
+  --border: #dfe3ea;
+  --accent: #2459d6;
+  --accent-text: #ffffff;
+  --danger: #b3261e;
+  --danger-bg: #fdecea;
+  --ok: #1e7a45;
+  --ok-bg: #e7f5ec;
+  --shadow: 0 1px 2px rgba(20, 30, 50, 0.06);
+  --space: 16px;
+  --radius: 10px;
+}
+
+:root[data-theme="dark"] {
+  --bg: #12151b;
+  --surface: #1b2029;
+  --text: #e7eaf0;
+  --muted: #9aa4b5;
+  --border: #2b3240;
+  --accent: #7aa2ff;
+  --accent-text: #0e1320;
+  --danger: #ff8a80;
+  --danger-bg: #3a1f1d;
+  --ok: #6fd39a;
+  --ok-bg: #173324;
+  --shadow: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151b;
+    --surface: #1b2029;
+    --text: #e7eaf0;
+    --muted: #9aa4b5;
+    --border: #2b3240;
+    --accent: #7aa2ff;
+    --accent-text: #0e1320;
+    --danger: #ff8a80;
+    --danger-bg: #3a1f1d;
+    --ok: #6fd39a;
+    --ok-bg: #173324;
+    --shadow: none;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.bar { background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1; }
+.bar__inner {
+  max-width: 1100px; margin: 0 auto; padding: 12px var(--space);
+  display: flex; align-items: center; gap: var(--space); flex-wrap: wrap;
+}
+h1 { font-size: 18px; margin: 0; letter-spacing: -0.01em; }
+h1 span { color: var(--accent); }
+h2 { font-size: 16px; margin: 0 0 12px; }
+h2 small { color: var(--muted); font-weight: 400; font-size: 13px; margin-left: 6px; }
+
+.tabs { display: flex; gap: 4px; margin-right: auto; }
+.tabs button, .ghost {
+  background: transparent; color: var(--muted); border: 1px solid transparent;
+  border-radius: 8px; padding: 6px 12px; font: inherit; cursor: pointer;
+}
+.tabs button[aria-selected="true"] { color: var(--text); background: var(--bg); border-color: var(--border); }
+.ghost { border-color: var(--border); }
+
+main { max-width: 1100px; margin: 0 auto; padding: var(--space); }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space); }
+.wide { grid-column: 1 / -1; }
+[hidden] { display: none !important; }
+
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: var(--space); box-shadow: var(--shadow); min-width: 0;
+}
+
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { color: var(--muted); font-weight: 500; font-size: 13px; }
+td.num, th.num { text-align: right; }
+tr:last-child td { border-bottom: 0; }
+.scroll { overflow-x: auto; }
+code { font: 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+form { display: grid; gap: 12px; }
+label { display: grid; gap: 4px; color: var(--muted); font-size: 13px; }
+select, input {
+  font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: 9px 10px; width: 100%;
+}
+select:focus-visible, input:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+form button {
+  background: var(--accent); color: var(--accent-text); border: 0; border-radius: 8px;
+  padding: 10px 14px; font: inherit; font-weight: 600; cursor: pointer;
+}
+form button[disabled] { opacity: 0.6; cursor: progress; }
+
+.message { margin: 0; min-height: 1.5em; font-size: 14px; }
+.message.error, .banner { color: var(--danger); }
+.message.ok { color: var(--ok); }
+.banner { background: var(--danger-bg); border: 1px solid var(--danger); border-radius: var(--radius); padding: 10px 14px; margin-bottom: var(--space); }
+.hint, .empty, .loading { color: var(--muted); font-size: 13px; margin: 12px 0 0; }
+.empty, .loading { padding: 12px 0; margin: 0; }
+
+.kpis { display: flex; flex-wrap: wrap; gap: var(--space); }
+.kpi { min-width: 120px; }
+.kpi b { display: block; font-size: 22px; font-variant-numeric: tabular-nums; }
+.kpi span { color: var(--muted); font-size: 13px; }
+
+@media (max-width: 520px) {
+  .bar__inner { gap: 8px; }
+  th, td { padding: 6px; }
+}

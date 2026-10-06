@@ -31,11 +31,10 @@
             <groupId>io.minispring</groupId>
             <artifactId>mini-spring-web</artifactId>
         </dependency>
-        <!-- The application's database driver; the framework modules themselves do not depend on it. -->
+        <!-- The application's database; the framework modules themselves do not depend on it. -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>runtime</scope>
         </dependency>
     </dependencies>
 

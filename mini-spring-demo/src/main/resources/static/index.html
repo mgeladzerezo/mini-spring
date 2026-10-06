@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>mini-spring bank</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <header class="bar">
+    <div class="bar__inner">
+      <h1>mini-spring <span>bank</span></h1>
+      <nav class="tabs" role="tablist" aria-label="Sections">
+        <button role="tab" aria-selected="true" data-tab="bank">Bank</button>
+        <button role="tab" aria-selected="false" data-tab="system">Container</button>
+      </nav>
+      <button id="theme" class="ghost" type="button" aria-label="Toggle colour theme">Theme</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="banner" class="banner" role="alert" hidden></div>
+
+    <section id="tab-bank" class="grid">
+      <article class="card">
+        <h2>Accounts</h2>
+        <div id="accounts" aria-live="polite"></div>
+      </article>
+
+      <article class="card">
+        <h2>Transfer</h2>
+        <form id="transfer-form" novalidate>
+          <label>From
+            <select id="from" required></select>
+          </label>
+          <label>To
+            <select id="to" required></select>
+          </label>
+          <label>Amount
+            <input id="amount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0.00" required>
+          </label>
+          <button id="submit" type="submit">Send money</button>
+          <p id="form-message" class="message" aria-live="polite"></p>
+        </form>
+        <p class="hint">Try an amount larger than the balance, or send to account 999: the response shows the error and the balances stay untouched, because the debit is rolled back.</p>
+      </article>
+
+      <article class="card wide">
+        <h2>Recent transfers</h2>
+        <div id="transfers" aria-live="polite"></div>
+      </article>
+
+      <article class="card wide">
+        <h2>Audit log <small>filled by an @EventListener</small></h2>
+        <div id="audit" aria-live="polite"></div>
+      </article>
+    </section>
+
+    <section id="tab-system" class="grid" hidden>
+      <article class="card wide">
+        <h2>Startup</h2>
+        <div id="startup"></div>
+      </article>
+      <article class="card wide">
+        <h2>Beans <small>creation order, dependencies created first</small></h2>
+        <div id="beans"></div>
+      </article>
+      <article class="card">
+        <h2>Routes</h2>
+        <div id="routes"></div>
+      </article>
+      <article class="card">
+        <h2>@Timed methods</h2>
+        <div id="timings"></div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
