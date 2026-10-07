@@ -4,6 +4,8 @@ A dependency injection container, an AOP layer with generated class proxies, JDB
 
 [![CI](https://github.com/mgeladzerezo/mini-spring/actions/workflows/ci.yml/badge.svg)](https://github.com/mgeladzerezo/mini-spring/actions/workflows/ci.yml)
 
+> **CI result.** On 7 October 2026 the workflow ran the complete suite on GitHub Actions (Ubuntu, Docker available) and it passed: 342 tests across the five modules, 0 failures ([run 37606161278](https://github.com/mgeladzerezo/mini-spring/actions/runs/37606161278)). The verification notes further down describe what had been run on this machine before that and are kept for the record.
+
 ## Architecture
 
 ```mermaid
